@@ -5,6 +5,7 @@
 enum class EC_SPI_BASE_RESULT {
     OK                  = 0,            // Операция успешна произведена.
     TIME_OUT            = 1,            // Был произведён выход по истечении времени ожидания.
+    LENGTH_ERROR        = 2             // Попытка передать/принять пакет 0-й длины.
 };
 
 //**********************************************************************
@@ -25,7 +26,7 @@ public:
     //
     // ЗАМЕЧАНИЕ: входной прием не ведется (входные данные просто теряются)!
     //**********************************************************************
-    virtual EC_SPI_BASE_RESULT tx ( const uint8_t* const  p_array_tx, const uint8_t& length, const uint32_t& timeout_ms ) const = 0;
+    virtual EC_SPI_BASE_RESULT tx ( const uint8_t* const  p_array_tx, const uint16_t& length, const uint32_t& timeout_ms ) const = 0;
 
     //**********************************************************************
     // p_array_tx   -   указатель на массив, который требуется передать
@@ -75,7 +76,7 @@ public:
     // value_out    -   значение, которое будет отправляться по TX
     //                  ( если будет использоваться ).
     //**********************************************************************
-    virtual EC_SPI_BASE_RESULT rx ( void* p_array_rx, const uint16_t& length, const uint32_t& timeout_ms, const uint8_t& out_value = 0xFF ) const = 0;
+    virtual EC_SPI_BASE_RESULT rx ( uint8_t* p_array_rx, const uint16_t& length, const uint32_t& timeout_ms, const uint8_t& out_value = 0xFF ) const = 0;
 
     virtual ~spi_master_8bit_base() {}
 };
