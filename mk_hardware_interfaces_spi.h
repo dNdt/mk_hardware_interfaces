@@ -12,7 +12,7 @@ enum class EC_SPI_BASE_RESULT {
 //**********************************************************************
 class spi_master_8bit_base {
 public:
-    constexpr spi_base() {}
+    constexpr spi_master_8bit_base() {}
 
     //**********************************************************************
     // p_array_tx   -   указатель на массив, который требуется передать
@@ -77,5 +77,5 @@ public:
     //**********************************************************************
     virtual EC_SPI_BASE_RESULT rx ( void* p_array_rx, const uint16_t& length, const uint32_t& timeout_ms, const uint8_t& out_value = 0xFF ) const = 0;
 
-    virtual ~spi_base() {}
+    virtual ~spi_master_8bit_base() {}
 };
