@@ -60,7 +60,7 @@ public:
     //
     // Передаем 1 байт count раз.
     //**********************************************************************
-    virtual EC_SPI_BASE_RESULT tx_one_item ( const uint8_t* const  p_item_tx, const uint16_t& count, const uint32_t& timeout_ms ) const = 0;
+    virtual EC_SPI_BASE_RESULT tx_one_item ( const uint8_t p_item_tx, const uint16_t count, const uint32_t timeout_ms ) const = 0;
 
     //**********************************************************************
     // p_array_rx   -   указатель на массив, в который будет
