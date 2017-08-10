@@ -31,5 +31,7 @@ public:
     virtual void    set     ( bool state )      const = 0;
     virtual void    set     ( int state )       const = 0;
 
+    virtual bool    read    ( void )            const = 0;
+
     virtual ~pin_base() {}
 };
