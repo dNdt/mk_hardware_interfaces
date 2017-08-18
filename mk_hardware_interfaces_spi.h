@@ -13,8 +13,6 @@ enum class EC_SPI_BASE_RESULT {
 //**********************************************************************
 class spi_master_8bit_base {
 public:
-    constexpr spi_master_8bit_base() {}
-
     //**********************************************************************
     // Метод должен:
     // 1. Отключить SPI.
@@ -90,6 +88,4 @@ public:
     //                  ( если будет использоваться ).
     //**********************************************************************
     virtual EC_SPI_BASE_RESULT rx ( uint8_t* p_array_rx, const uint16_t& length, const uint32_t& timeout_ms, const uint8_t& out_value = 0xFF ) const = 0;
-
-    virtual ~spi_master_8bit_base() {}
 };
