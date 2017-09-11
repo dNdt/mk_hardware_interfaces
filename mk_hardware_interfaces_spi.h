@@ -2,12 +2,15 @@
 
 #include <stdint.h>
 
-enum class EC_SPI_BASE_RESULT {
+namespace SPI {
+
+enum class BASE_RESULT {
     OK                  = 0,            // Операция успешна произведена.
     TIME_OUT            = 1,            // Был произведён выход по истечении времени ожидания.
     LENGTH_ERROR        = 2             // Попытка передать/принять пакет 0-й длины.
 };
 
+}
 //**********************************************************************
 // SPI в режиме мастера, транзакции по 8 бит.
 //**********************************************************************
@@ -37,7 +40,7 @@ public:
     //
     // ЗАМЕЧАНИЕ: входной прием не ведется (входные данные просто теряются)!
     //**********************************************************************
-    virtual EC_SPI_BASE_RESULT tx ( const uint8_t* const  p_array_tx, const uint16_t& length, const uint32_t& timeout_ms ) const = 0;
+    virtual SPI::BASE_RESULT tx ( const uint8_t* const  p_array_tx, const uint16_t& length, const uint32_t& timeout_ms ) const = 0;
 
     //**********************************************************************
     // p_array_tx   -   указатель на массив, который требуется передать
@@ -57,7 +60,7 @@ public:
     // ЗАМЕЧАНИЕ: p_array_tx может быть равен p_array_rx. Тогда
     // принятые данные перезапишут массив исходящих данных!
     //**********************************************************************
-    virtual EC_SPI_BASE_RESULT tx ( const uint8_t* const  p_array_tx, uint8_t* p_array_rx, const uint16_t& length, const uint32_t& timeout_ms ) const = 0;
+    virtual SPI::BASE_RESULT tx ( const uint8_t* const  p_array_tx, uint8_t* p_array_rx, const uint16_t& length, const uint32_t& timeout_ms ) const = 0;
 
     //**********************************************************************
     // p_item_tx    -   указатель на переменную, которая будет передаваться
@@ -71,7 +74,7 @@ public:
     //
     // Передаем 1 байт count раз.
     //**********************************************************************
-    virtual EC_SPI_BASE_RESULT tx_one_item ( const uint8_t p_item_tx, const uint16_t count, const uint32_t timeout_ms ) const = 0;
+    virtual SPI::BASE_RESULT tx_one_item ( const uint8_t p_item_tx, const uint16_t count, const uint32_t timeout_ms ) const = 0;
 
     //**********************************************************************
     // p_array_rx   -   указатель на массив, в который будет
@@ -87,5 +90,5 @@ public:
     // value_out    -   значение, которое будет отправляться по TX
     //                  ( если будет использоваться ).
     //**********************************************************************
-    virtual EC_SPI_BASE_RESULT rx ( uint8_t* p_array_rx, const uint16_t& length, const uint32_t& timeout_ms, const uint8_t& out_value = 0xFF ) const = 0;
+    virtual SPI::BASE_RESULT rx ( uint8_t* p_array_rx, const uint16_t& length, const uint32_t& timeout_ms, const uint8_t& out_value = 0xFF ) const = 0;
 };
