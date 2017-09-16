@@ -4,6 +4,11 @@
 
 namespace SPI {
 
+enum class STEP_MODE {
+    INC         = 1,
+    DEC         = -1
+};
+
 enum class BASE_RESULT {
     OK                  = 0,            // Операция успешна произведена.
     TIME_OUT            = 1,            // Был произведён выход по истечении времени ожидания.
@@ -40,7 +45,8 @@ public:
     //
     // ЗАМЕЧАНИЕ: входной прием не ведется (входные данные просто теряются)!
     //**********************************************************************
-    virtual SPI::BASE_RESULT tx ( const uint8_t* const  p_array_tx, const uint16_t& length, const uint32_t& timeout_ms ) const = 0;
+    virtual SPI::BASE_RESULT tx           ( const uint8_t* const  p_array_tx, const uint16_t& length, const uint32_t& timeout_ms, const SPI::STEP_MODE step_mode = SPI::STEP_MODE::INC ) const = 0;
+
 
     //**********************************************************************
     // p_array_tx   -   указатель на массив, который требуется передать
