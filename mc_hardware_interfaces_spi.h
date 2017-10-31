@@ -66,7 +66,8 @@ public:
     // ЗАМЕЧАНИЕ: p_array_tx может быть равен p_array_rx. Тогда
     // принятые данные перезапишут массив исходящих данных!
     //**********************************************************************
-    virtual SPI::BASE_RESULT tx ( const uint8_t* const  p_array_tx, uint8_t* p_array_rx, const uint16_t& length, const uint32_t& timeout_ms ) const = 0;
+    virtual SPI::BASE_RESULT tx ( const uint8_t* const  p_array_tx, uint8_t* p_array_rx, const uint16_t& length, const uint32_t& timeout_ms = 0 ) const = 0;
+
 
     //**********************************************************************
     // p_item_tx    -   указатель на переменную, которая будет передаваться
