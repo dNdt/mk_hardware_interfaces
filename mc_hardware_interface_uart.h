@@ -12,9 +12,9 @@ enum class result{
 };
 
 class uart_base{
-
-	virtual result tx(uint8_t *txBuf, uint16_t ln, uint16_t timeoutMs = 0 ) = 0;
-	virtual result rx(uint8_t *rxBuf, uint16_t rxBufLn) = 0;
+	// Timeout type like TickType_t ( may be use portMAX_DELAY)
+	virtual result tx(uint8_t *txBuf, uint16_t ln, uint32_t timeoutMs = 0 ) = 0;
+	virtual result rx(uint8_t *rxBuf, uint16_t rxBufLn, uint32_t timeoutMs = 0 ) = 0;
 
 };
 
